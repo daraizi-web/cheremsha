@@ -468,21 +468,19 @@ termInput.addEventListener('keydown', async (e) => {
         }
 
         // =============================================
-        // ПРИОРИТЕТ №4 — AI (МИХАЛЫЧ ЖИВОЙ)
-        // =============================================
-        // «как дела» — всегда идёт в ИИ, игнорируя старые заглушки
-        // Любая другая нераспознанная команда — тоже в ИИ
-        try {
-            const aiResponse = await fetch('https://mikhalyh-api.vercel.app/api/mikhalyh', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: val, isAdmin: isAdminSession })
-            });
-            const data = await aiResponse.json();
-            await mikhalychSay(data.text);
-        } catch (err) {
-            await mikhalychSay("Связь с НИИ прервана, Сёмга кабель сгрызла");
-        }
+// ПРИОРИТЕТ №4 — AI (МИХАЛЫЧ ЖИВОЙ)
+// =============================================
+try {
+    const aiResponse = await fetch('https://mikhalyh-api.vercel.app/api/mikhalych', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: val, isAdmin: isAdminSession })
+    });
+    const data = await aiResponse.json();
+    await mikhalychSay(data.text);
+} catch (err) {
+    await mikhalychSay("Связь с НИИ прервана, Сёмга кабель сгрызла");
+}
     }
 });
 
