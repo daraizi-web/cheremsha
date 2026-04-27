@@ -473,7 +473,7 @@ termInput.addEventListener('keydown', async (e) => {
         // «как дела» — всегда идёт в ИИ, игнорируя старые заглушки
         // Любая другая нераспознанная команда — тоже в ИИ
         try {
-            const aiResponse = await fetch('/api/mikhalyh', {
+            const aiResponse = await fetch('https://mikhalyh-api.vercel.app/api/mikhalyh', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ message: val, isAdmin: isAdminSession })
